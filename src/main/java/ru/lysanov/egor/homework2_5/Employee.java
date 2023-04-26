@@ -1,50 +1,47 @@
 package ru.lysanov.egor.homework2_5;
 
+import java.util.Objects;
+
 public class Employee {
-    private String fullName;
-    private int department;
-    private int salary;
-    private int id;
+    public String firstName;
+    public String lastName;
 
-    public static int idCounter = 0;
-
-    public Employee(String fullName, int department, int salary) {
-        this.fullName = fullName;
-        this.department = department;
-        this.salary = salary;
-        idCounter++;
-        id = idCounter;
+    public Employee(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public int getDepartment() {
-        return department;
+    public String getLastName() {
+        return lastName;
     }
 
-    public int getSalary() {
-        return salary;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public int getId() {
-        return id;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setDepartment(int department) {
-        this.department = department;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName);
     }
 
     @Override
     public String toString() {
-        return "Сотрудник: " + fullName +
-                ", отдел: " + department +
-                ", зарплата: " + salary + " рублей" +
-                ", id: " + id;
+        return "Сотрудник: " + firstName + " " + lastName;
     }
 }
